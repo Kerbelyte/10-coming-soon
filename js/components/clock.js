@@ -4,7 +4,7 @@ function calcTimeTillDate(date) {
         days: 45,
         hours: 7,
         minutes: 35,
-        seconds : 9,
+        seconds: 9,
     }
 }
 function formatNumber(number) {
@@ -19,13 +19,13 @@ function clock(selector, date) {
     let HTML = '';
     for (const item of config) {
         const value = timeLeft[item];
-        
+
         let formatedValue = value;
         if (item !== config[0]) {
             formatedValue = formatNumber(value);
         }
 
-        HTML+= `<div class="time">
+        HTML += `<div class="time">
                   <div class="value">${formatedValue}</div> 
                   <div class="label">${item}</div>   
                   </div>`;
