@@ -15,13 +15,25 @@ function progressBar(selector, data) {
                         </div>
                     </div>
                 </div>`;
-        
+
     }
     DOM.innerHTML += HTML;
 
-    addEventListener('scroll', () => {
-        console.log(scrollY);
-    })
+    const progressBarsDOM = DOM.querySelectorAll('.progress-bar')
+
+    for (const progressBarDOM of progressBarsDOM) {
+       
+        addEventListener('scroll', () => {
+            const elementTop = progressBarDOM.offsetTop;
+            const elementHeight = progressBarDOM.clientHeight;
+            
+            const isVisible = scrollY + innerHeight >= elementTop + elementHeight;
+
+            if (isVisible) {
+                progressBarDOM.classList.add('animate')
+            }
+        })
+    }
 }
 
 export { progressBar }
