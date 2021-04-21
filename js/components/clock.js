@@ -20,11 +20,11 @@ function calcTimeTillDate(date) {
     const timeLeftInMiliseconds = currMiliseconds - nowInMiliseconds;
     let timeLeftInSeconds = Math.round(timeLeftInMiliseconds / 1000);
 
- // const seconds = timeLeftInSeconds % 60;
+    // const seconds = timeLeftInSeconds % 60;
     // const minutes = (timeLeftInSeconds - seconds) / 60 % 60;
     // const hours = (timeLeftInSeconds - seconds - minutes * 60) / 3600 % 24;
     // const days = (timeLeftInSeconds - seconds - minutes * 60 - hours * 3600) / 86400;
-    
+
 
     const days = Math.floor(timeLeftInSeconds / 86400);
     timeLeftInSeconds -= days * 86400;
@@ -40,10 +40,21 @@ function formatNumber(number) {
     return number < 10 ? '0' + number : number;
 }
 
+function updateTime(valuesDOM, timeValues) {
+    const config = [`days`, `hours`, `minutes`, `seconds`];
+
+    for (let i = 0; i < valuesDOM.length; i++) {
+        const valueDOM = valuesDOM[i];
+        const key = config[i];
+        const value = key === 'days' ? timeValues[key] : formatNumber(timeValues[key]);
+        valueDOM.innerText = value;
+    }
+}
+
 function clock(selector, date) {
     const DOM = document.querySelector(selector);
     const timeLeft = calcTimeTillDate(date);
-    const config = [`days`, `hours`, `minutes`, `seconds`]
+    const config = [`days`, `hours`, `minutes`, `seconds`];
 
     let HTML = '';
     for (const item of config) {
@@ -59,7 +70,16 @@ function clock(selector, date) {
                   <div class="label">${item}</div>   
                   </div>`;
     }
+
     DOM.innerHTML = HTML;
+
+    const allTimeValueDOM = DOM.querySelectorAll('.value');
+
+    setInterval(() => {
+        updateTime(allTimeValueDOM, calcTimeTillDate(date));
+    }, 1000);
+
+
 }
 
 
