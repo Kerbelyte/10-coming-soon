@@ -30,9 +30,9 @@ function progressBar(selector, data) {
             const isVisible = scrollY + innerHeight >= elementTop + elementHeight;
 
             if (isVisible) {
-                progressBarDOM.classList.add('animate')
+                progressBarDOM.classList.add('animate');
             }
-        })
+        });
     }
 }
 
