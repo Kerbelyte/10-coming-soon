@@ -101,6 +101,8 @@ body {
     font-size: 20px;
     border-radius: 50%;
     color: #fff;
+    text-decoration: none;
+    cursor: pointer;
   }
   footer > .socials-content > .icon:hover {
     background-color: #fff;
